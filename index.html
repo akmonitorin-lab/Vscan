@@ -8,32 +8,29 @@
     <style>
         :root { --bg-dark: #0b1329; --bg-card: #152238; --primary: #2563eb; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #1e293b; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
-        
-        /* Navigation */
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; background: rgba(11, 19, 41, 0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); }
         .logo { font-size: 1.3rem; font-weight: 800; color: var(--text-main); }
         .btn-header { border: 1px solid var(--primary); color: var(--text-main); padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 600; text-decoration: none; font-size: 0.9rem; }
         
-        /* Reel Video Container (9:16 Ratio) */
-        .video-showcase-box { background: var(--bg-card); padding: 2rem; border-radius: 20px; border: 1px solid var(--border); margin: 2rem auto; max-width: 400px; text-align: center; }
-        .video-player-container { width: 100%; aspect-ratio: 9 / 16; border-radius: 16px; overflow: hidden; background: #000; border: 4px solid #334155; margin-bottom: 1rem; }
-        video { width: 100%; height: 100%; object-fit: cover; }
+        .hero { padding: 4rem 5%; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2.5rem; align-items: center; max-width: 1250px; margin: 0 auto; }
+        h1 { font-size: 2.8rem; margin-bottom: 1rem; }
+        .btn-primary { background: var(--primary); color: #fff; padding: 0.7rem 1.4rem; border-radius: 6px; text-decoration: none; font-weight: 600; }
         
-        .playlist-buttons { display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
-        .playlist-btn { background: #0f172a; color: white; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; text-align: center; }
-        .playlist-btn.active { border-color: var(--primary); color: #38bdf8; }
+        .video-showcase-box { background: var(--bg-card); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border); margin: 2rem 5%; }
+        .video-player-container { width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; }
+        video { width: 100%; height: 100%; object-fit: contain; }
+        
+        .grid-5 { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; padding: 0 5%; }
+        .media-card { background: var(--bg-card); border-radius: 8px; overflow: hidden; }
+        .media-card img { width: 100%; height: 200px; object-fit: cover; }
+        
+        .contact-section { padding: 4rem 5%; max-width: 1250px; margin: 0 auto; }
+        .booking-form { background: var(--bg-card); padding: 2rem; border-radius: 14px; display: flex; flex-direction: column; gap: 1rem; }
+        .form-control { background: #0f172a; border: 1px solid var(--border); padding: 1rem; color: #fff; border-radius: 8px; width: 100%; }
+        .btn-submit { background: var(--primary); color: white; padding: 1rem; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-        /* Graphics Grid */
-        .grid-5 { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; padding: 20px; max-width: 800px; margin: auto; }
-        .media-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
-        
-        /* Contact Form */
-        .form-container { max-width: 500px; margin: 40px auto; padding: 25px; background: var(--bg-card); border-radius: 15px; border: 1px solid var(--border); }
-        .form-control { width: 100%; padding: 12px; margin: 10px 0; background: #0f172a; border: 1px solid var(--border); color: white; border-radius: 8px; }
-        .btn-submit { width: 100%; padding: 15px; background: #2563eb; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        
-        @media (max-width: 600px) { .hero { padding: 2rem 5%; } }
+        @media (max-width: 850px) { .hero { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -41,63 +38,42 @@
         <div class="logo">VSCAN <span>ALLIANCE</span></div>
         <a href="#contact" class="btn-header">Book Campaign Strategy</a>
     </nav>
-
+    <section class="hero">
+        <div><h1>We Build Winning <span>Digital Narratives</span></h1><a href="#contact" class="btn-primary">Book Strategy Call →</a></div>
+    </section>
     <section id="portfolio">
         <div class="video-showcase-box">
-            <h3 style="margin-bottom: 1rem;">🎥 Campaign Reels</h3>
             <div class="video-player-container">
                 <video id="mainVideoPlayer" autoplay loop muted playsinline controls>
                     <source id="videoSource" src="video1.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="playlist-buttons">
-                <div class="playlist-btn active" onclick="playSelectVideo('video1.mp4', this)">Rally Highlights</div>
-                <div class="playlist-btn" onclick="playSelectVideo('video2.mp4', this)">Speech Clips</div>
-                <div class="playlist-btn" onclick="playSelectVideo('video3.mp4', this)">Manifesto Promo</div>
-                <div class="playlist-btn" onclick="playSelectVideo('video4.mp4', this)">Youth Campaign</div>
-                <div class="playlist-btn" onclick="playSelectVideo('video5.mp4', this)">Event Coverage</div>
-            </div>
+        </div>
+        <div class="grid-5">
+            <div class="media-card"><img src="graphic1.jpg" alt="1"></div>
+            <div class="media-card"><img src="graphic2.jpg" alt="2"></div>
+            <div class="media-card"><img src="graphic3.jpg" alt="3"></div>
+            <div class="media-card"><img src="graphic4.jpg" alt="4"></div>
+            <div class="media-card"><img src="graphic5.jpg" alt="5"></div>
         </div>
     </section>
-
-    <div class="grid-5">
-        <img src="graphic1.jpg" class="media-card">
-        <img src="graphic2.jpg" class="media-card">
-        <img src="graphic3.jpg" class="media-card">
-        <img src="graphic4.jpg" class="media-card">
-        <img src="graphic5.jpg" class="media-card">
-    </div>
-
-    <section id="contact" class="form-container">
-        <h2>Submit Campaign Inquiry</h2>
-        <p style="color:var(--text-muted); margin: 10px 0;">Connect with our war room strategists for 100% confidential digital campaign management.</p>
-        <form onsubmit="sendWhatsAppBooking(event)">
+    <section id="contact" class="contact-section">
+        <form class="booking-form" onsubmit="sendWhatsAppBooking(event)">
             <input type="text" id="clientName" class="form-control" placeholder="Full name" required>
             <input type="text" id="clientContact" class="form-control" placeholder="Phone or email" required>
             <select id="serviceSelected" class="form-control">
-                <option value="Full political campaign handling">Full political campaign handling</option>
-                <option value="Content & War Room Design">Content & War Room Design</option>
-                <option value="Ground & Community Narrative">Ground & Community Narrative</option>
-                <option value="Micro-Targeted Election Ads">Micro-Targeted Election Ads</option>
+                <option value="Full campaign">Full political campaign handling</option>
+                <option value="Design">Content & War Room Design</option>
             </select>
             <button type="submit" class="btn-submit">Submit Campaign Inquiry →</button>
         </form>
     </section>
-
     <script>
-        function playSelectVideo(src, el) {
-            var player = document.getElementById('mainVideoPlayer');
-            player.src = src;
-            player.play();
-            document.querySelectorAll('.playlist-btn').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-        }
         function sendWhatsAppBooking(e) {
             e.preventDefault();
             var name = document.getElementById('clientName').value;
             var contact = document.getElementById('clientContact').value;
             var service = document.getElementById('serviceSelected').value;
-            // Apna WhatsApp number yahan dalein
             var phoneNum = "919999999999"; 
             var message = `New Inquiry: ${name}, Contact: ${contact}, Service: ${service}`;
             window.open(`https://wa.me/${phoneNum}?text=${message}`, '_blank');
